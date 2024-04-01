@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateAssetRequest;
 use App\Mail\ExampleMail;
 use App\Models\Asset;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use App\Http\Controllers\FacecadePdf;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Mail;
 
 class AssetController extends Controller
@@ -19,13 +22,6 @@ class AssetController extends Controller
     public function index(Request $request)
     {
         //
-        // if ($request->ajax()) {
-        //     $result = Asset::where('no_kakitangan', $request->search)->orderByDesc('updated_at')->get();
-        //     return response()->json([$result]);
-        // }
-        // return view('user.index', [
-        //     'assets' => Asset::orderByDesc('updated_at')->get(),
-        // ]);
         if ($request->ajax()) {
             $searchTerm = $request->search;
             
@@ -63,6 +59,9 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         //
+        // $validated = $request->validate([
+        //     "email" => "required|string",
+        // ]);
         $assets = New Asset;
         $assets->nama = $request->nama;
         $assets->no_kakitangan = $request->no_kakitangan;
@@ -72,6 +71,11 @@ class AssetController extends Controller
         $assets->no_telefon = $request->no_telefon;
         $assets->no_telefon_pejabat = $request->no_telefon_pejabat;
         $assets->alamat_pejabat = $request->alamat_pejabat;
+        if ($request->hasFile('gambar')) {
+            // Store the uploaded file
+            $assets->gambar = $request->file('gambar')->store('gambar', 'public');
+        }
+        // dd($assets);
 
         $assets->save();
         // alert()->success('Berjaya', 'Data telah disimpan');
@@ -149,4 +153,10 @@ class AssetController extends Controller
         return redirect()->route('pp.index');
 
     }
+    // public function generate(Request $request) 
+    // {
+    //     $assets = Asset::all();
+
+    //     $assets = FacecadePdf::loadView('user.index', compact('assets'));
+    // }
 }

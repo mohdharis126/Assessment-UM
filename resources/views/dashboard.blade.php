@@ -188,7 +188,7 @@
                                 </a>
                             </li>
 
-                            
+                            @if( auth()->user()->role->name == 'superadmin' || auth()->user()->role->name == 'admin')
                             <li class="nav-item">
                                 <a class="nav-link p-3 my-1 dropdown-indicator" href="/pengurusan_pengguna/index"
                                     role="button" data-bs-toggle="collapse"
@@ -216,6 +216,7 @@
                                     </li>
                                 </ul>
                             </li>
+                            @endif
 
                             <div class="mt-5 d-flex flex-row-reverse">
                                 <a href="{{ route('logout') }}"
@@ -242,7 +243,23 @@
                 @include('sweetalert::alert')
 
                 <div style="min-height: 80vh;">
-                    @yield('content')
+                    {{-- @yield('content') --}}
+                    {{-- content utk user dekat dashboard --}}
+                    <div class="col mt-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2>HUBUNGI KAMI</h2>
+                                <div class="col">
+                                    <p>
+                                        Pusat Teknologi Maklumat & Komunikasi
+                                    </p><br>
+                                    <p class="mt-2"><i class="fas fa-blender-phone"></i>03-79674001 <br><i class="fas fa-fax"></i>03-79674001 <br><i class="fas fa-mail-bulk"></i>helpdesk.um.edu.my</p>
+                    
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">

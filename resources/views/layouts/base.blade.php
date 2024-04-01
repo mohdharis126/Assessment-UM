@@ -166,7 +166,7 @@
                                 </a>
                             </li>
 
-                            
+                            @if( auth()->user()->role->name == 'superadmin' || 'admin' )
                             <li class="nav-item">
                                 <a class="nav-link p-3 my-1 dropdown-indicator" href="#pengurusan-pengguna"
                                     role="button" data-bs-toggle="collapse"
@@ -193,6 +193,22 @@
                                         </a>
                                     </li>
                                 </ul>
+                                @if( auth()->user()->role->name == 'superadmin' )
+                                <ul class="nav collapse {{ Request::is('pengurusan_pengguna/*') ? 'show' : 'false' }} ps-4" id="pengurusan-pengguna">
+                                    <li
+                                        class="nav-item 
+                                        {{ Request::is('pengurusan_pengguna/index', 'pengurusan_pengguna/create', 'pengurusan_pengguna/edit/*') ? 'active' : '' }}">
+                                        <a class="nav-link" href="/pengurusan_pengguna/lantikan_index">
+                                            <div class="d-flex align-items-center">
+                                                <span class="nav-link-icon">
+                                                    <span class="fas fa-folder-open text-main"></span>
+                                                </span>
+                                                <span class="nav-link-text text-main ps-1">Lantikan Admin</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                @endif
                             </li>
 
                             <div class="mt-5 d-flex flex-row-reverse">
@@ -206,6 +222,7 @@
                             </div>
 
                         </ul>
+                        @endif
 
                     </div>
                 </div>

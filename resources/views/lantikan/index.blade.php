@@ -1,17 +1,15 @@
 @extends('layouts.base')
 @section('content')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
-
-    <x-header main="Pengurusan Pengguna" sub="Kakitangan" sub2="" />
+    <x-header main="Pengurusan Pengguna" sub="Pengguna" sub2="" />
 
     <div class="my-4">
-        <h4 class="text-center">JUMLAH Kakitangan</h4>
+        <h4 class="text-center">JUMLAH Pengguna</h4>
         <h1 class="text-center text-danger fw-bold"></h1>
     </div>
 
 
     <div class="row justify-content-center">
-        <div class="col-8">
+        {{-- <div class="col-8">
             <div class="row">
                 <div class="col-2">
                     <p class="fw-bold">No. Kakitangan</p>
@@ -28,57 +26,57 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
 
         <div class="col-10 mt-2">
-            <div class="text-end mb-3">
+            {{-- <div class="text-end mb-3">
                 <a href="{{ route('pp.create') }}" class="btn btn-success">Daftar
                     <span class="text-white" data-feather="plus-circle"></span>
                 </a>
-            </div>
+            </div> --}}
 
             <div class="card">
                 <div class="card-body">
-                    <div id="tableExample2"
-                        data-list='{"valueNames":["bil","kakitangan","pekerja","email"],"page":10,"pagination":true}'>
+                    <div
+                        data-list='{"valueNames":["bil","kakitangan","pekerja","email"],"page":5,"pagination":true}'>
                         <div class="table-responsive scrollbar table-striped">
                             <table class="table fs--1 mb-0 text-center" id="example">
                                 <thead class=" text-900">
                                     <tr style="border-bottom-color: #F89521">
                                         <th class="sort" data-sort="bil">Bil</th>
-                                        <th class="sort" data-sort="kakitangan">No. Kakitangan</th>
-                                        <th class="sort" data-sort="pekerja">Nama</th>
-                                        <th class="sort" data-sort="email">Email</th>
+                                        <th class="sort" data-sort="kakitangan">nama</th>
+                                        <th class="sort" data-sort="pekerja">Email</th>
+                                        <th class="sort" data-sort="email">Peranan</th>
                                         <th>Tindakan</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list" id="tablebody">
-                                    @foreach ($assets as $asset)
+                                    @foreach ($users as $user)
                                         <tr style="border-bottom:#fff">
                                             <td class="bil">
                                                 {{ $loop->iteration }}
                                             </td>
                                             <td class="kakitangan">
-                                                {{ $asset->no_kakitangan }}
+                                                {{ $user->name }}
                                             </td>
                                             <td class="pekerja">
-                                                {{ $asset->nama }}
+                                                {{ $user->email }}
                                             </td>
                                             <td class="email">
-                                                {{ $asset->email }}
+                                                {{ $user->role->name }}
                                             </td>
                                             <td>
-                                                <form action="{{ route('pp.delete', $asset->id) }}" method="post"
+                                                {{-- <form action="" method="post"
                                                     class="d-inline-flex">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn-del btn btn-sm btn-danger">
                                                         <span class="fas fa-trash-alt" style="width:15px;"></span>Delete
                                                     </button>
-                                                </form>
-                                                <a href="{{ route('pp.edit', $asset->id) }}"
+                                                </form> --}}
+                                                <a href="{{ route('uc.edit', $user->id) }}"
                                                     class="ms-2 btn btn-sm btn-secondary">
                                                     <span class="fas fa-edit" style="width:15px;"></span>Edit
                                                 </a>
@@ -94,12 +92,6 @@
                             <ul class="pagination mb-0"></ul>
                             <button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Next"
                                 data-list-pagination="next"><span class="fas fa-chevron-right"> </span>Next</button>
-                                {{-- <a href="/pengurusan_pengguna/generate"
-                                    class="ms-2 btn btn-sm btn-secondary">
-                                    <span class="fas fa-edit" style="width:15px;"></span>generate1
-                                </a>
-                            <button class="btn btn-sm btn-falcon-default ms-1" onclick="generatePDF()"><span class="fas fa-chevron-right"> </span>Generate PDF</button> --}}
-
                         </div>
                     </div>
                 </div>
@@ -107,17 +99,6 @@
         </div>
 
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                "paging": true, 
-                "pageLength": 10, 
-                "searching": true, 
-                "ordering": true, 
-            });
-        });
-    </script>
 
     <script>
         $(document).ready(function() {

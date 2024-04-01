@@ -3,6 +3,7 @@
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\UserController;
 use App\Models\Asset;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +29,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{asset}', [AssetController::class, 'edit'])->name('pp.edit');
         Route::put('/update/{asset}', [AssetController::class, 'update'])->name('pp.update');
         Route::delete('/delete/de/{asset}', [AssetController::class, 'delete'])->name('pp.delete');
+
+        // Route::get('/pengurusan_pengguna/generate', [AssetController::class, 'generate']);
         // Route::delete('delete/{asset}', [AssetController::class, 'delete']); 
     });
+    Route::get('/pengurusan_pengguna/lantikan_index', [UserController::class, 'index']);
+    Route::get('/pengurusan_pengguna/lantikan_edit/{user}', [UserController::class, 'edit'])->name('uc.edit');
+    Route::put('/pengurusan_pengguna/lantikan_update/{user}', [UserController::class, 'update'])->name('uc.update');
 });
 
 Route::get('/dashboard', function () {

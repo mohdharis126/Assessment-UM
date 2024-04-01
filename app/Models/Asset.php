@@ -18,6 +18,7 @@ class Asset extends Model
     //     'no_telefon',
     //     'no_telefon_pejabat',
     //     'alamat_pejabat',
+    //     'gambar',
     // ];
     protected $table = 'assets';
 }

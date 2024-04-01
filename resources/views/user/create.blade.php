@@ -103,6 +103,20 @@
 
                         </div>
 
+                        <div class="col-xl-6 mt-2">
+                            <div class="row align-items-center">
+                                <div class="col-xl-3">
+                                    <label class="col-form-label text-main">Gambar</label>
+                                </div>
+                                <div class="col-xl-8">
+                                    <input type="file" name="gambar"
+                                        class="form-control border-main  @error('gambar') is-invalid @enderror"
+                                        placeholder="upload" value="">
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div class="col-xl-6">
                             <div class="row align-items-center">
                                 <div class="col-xl-1"></div>

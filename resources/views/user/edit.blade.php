@@ -10,6 +10,9 @@
                 <div class="col-10 px-0">
                     <h3 class="fw-bold text-uppercase text-main">Maklumat Kakitangan</h3>
                     <h5 class="text-main">Sila isikan maklumat Kakitangan berikut dengan betul.</h5>
+                    <div>
+                        <img src="{{ asset($asset->gambar) }}" alt="User Picture">
+                    </div>
 
                     <div class="row align-items-center mt-5">
                         <div class="col-12">
@@ -64,11 +67,6 @@
                                         <option value="perempuan">Perempuan</option>
                                     </select>
                                 </div>
-                                {{-- <div class="col-xl-8">
-                                    <input type="text" name="jantina"
-                                        class="form-control border-main  @error('jantina') is-invalid @enderror"
-                                        placeholder="SILA TAIP DI SINI" value="{{ $asset->jantina }}">
-                                </div> --}}
                             </div>
                         </div>
 
